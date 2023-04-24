@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Страница пользователя: {{ user.username }}</h1>
+
+<p><strong>Имя:</strong>{{ user.first_name }}</p>
+  <p><strong>Фамилия:</strong> {{ user.last_name }}</p>
+  <p><strong>почта:</strong> {{ user.email }}</p>
+  <p>Зарегестрирован: {{user.date_joined }}</p>
+
+  <ul>
+
+  </ul>
+
+    {% if book_list %}
+    <h2>Любимые книги</h2>
+    <ul>
+
+      {% for book in book_list %}
+      <li class="{% if book.is_overdue %}text-danger{% endif %}">
+        <a href="{% url 'book-detail' book.pk %}">{{book.title}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>У вас еще нет любимых книг</p>
+    {% endif %}
+
+{% endblock %}

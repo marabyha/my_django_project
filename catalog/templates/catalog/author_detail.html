@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Автор: {{author}}</h1>
+
+  <p><strong>Имя:</strong>{{ author.first_name }}</p>
+  <p><strong>Фамилия:</strong> {{ author.last_name }}</p>
+  <p><strong>дата рождения:</strong> {{ author.date_of_birth }}</p>
+  <p><strong>дата смерти:</strong> {{ author.date_of_death }}</p>
+{% if user.is_superuser %}
+  <ul>
+    <a href="{% url 'author-update' author.pk %}">редактировать </a>/<a href="{% url 'author-delete' author.pk %}"> удалить</a>
+  </ul>
+{% endif %}
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Книги</h4>
+    {% for book in author.book_set.all %}
+    <hr>
+    <p><a href="{% url 'book-detail' book.pk %}">{{ book }}</a></p>
+    <p>{% for genre in book.genre.all %} <a href="{{ genre.get_absolute_url }}">{{ genre }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    <p>{{ book.summary }}</p>
+    {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

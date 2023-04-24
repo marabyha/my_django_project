@@ -1,0 +1,57 @@
+.sidebar-nav {
+    height: 100%;
+    margin-top: 25px;
+    padding: 0;
+    list-style: none;
+    line-height: 300%;
+    color: black;
+}
+
+body{
+    background-image: url(../img/bg4.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: black;
+}
+
+.col-sm-2{
+    background: rgba(200,200,200, 0.3);
+    background-size: cover;
+    attachment: fixed;
+    height: 100%;
+    position: fixed;
+}
+.col-sm-10{
+    height: 100%;
+    attachment: scroll;
+    position: relative;
+    left: 285px;
+    weight: 90%;
+
+}
+.container-fluid{
+    height: 100%;
+}
+
+a {
+    color: black;
+}
+.row{
+    background-attachment: fixed;
+    height: 100%;
+}
+a:hover {
+color: black;
+text-decoration: underline;
+font-size: 2rem;
+}
+button {
+border-radius: 10px;
+opacity: 50%;
+}
+img{
+    position: relative;
+    top: 400px;
+    left: 75px;
+}

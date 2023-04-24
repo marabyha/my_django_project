@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Жанр: {{genre}}</h1>
+{% if genre.book_set.all %}
+  <div style="margin-left:20px;margin-top:20px">
+    {% for book in genre.book_set.all %}
+    <hr>
+    <p><a href="{% url 'book-detail' book.pk %}">{{ book }}</a></p>
+    <p>{% for genre in book.genre.all %} <a href="{{ genre.get_absolute_url }}">{{ genre }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    <p>{{ book.summary }}</p>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>На сайте пока нет книг этого жанра.</p>
+{% endif %}
+{% endblock %}

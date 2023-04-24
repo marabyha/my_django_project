@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Название: {{ book.title }}</h1>
+
+  <p><strong>Автор:</strong> <a href="{% url 'author-detail' book.author.pk %}">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
+  <p><strong>Описание:</strong> {{ book.summary }}</p>
+  <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+  <p><strong>Язык:</strong> {{ book.language }}</p>
+  <p><strong>Жанр:</strong> {% for genre in book.genre.all %}<a href="{{ genre.get_absolute_url }}">{{ genre }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+{% if user.is_superuser %}
+  <ul>
+    <a href="{% url 'book-update' book.pk %}">редактировать </a>/<a href="{% url 'book-delete' book.pk %}"> удалить</a>
+  </ul>
+{% endif %}
+{% if user.is_authenticated %}
+<a href="{{ book.cover.url }}" download=""><button>Скачать книгу</button></a>
+{% else %}
+<p>Что бы скачать книгу <a href="{% url 'login' %}?next={% url 'index' %}">войдите в аккаунт</a></p>
+{% endif %}
+{% endblock %}

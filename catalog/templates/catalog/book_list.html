@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Список книг</h1>
+<a href="{% url 'book-create' %}">Тут вы можете добавить новую книгу</a>
+    {% if book_list %}
+    <ul>
+    <div style="margin-left:20px;margin-top:20px">
+    {% for book in book_list %}
+    <hr>
+    <p><a href="{% url 'book-detail' book.pk %}">{{ book.title }}</a></p>
+        <ul><p><a href="{{ book.author.get_absolute_url }}">{{book.author}}</a></p></ul>
+    <p>{% for genre in book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    <p>{{ book.summary }}</p>
+    {% endfor %}
+
+  </div>
+
+    </ul>
+    {% else %}
+      <p>На этом сайте еще нет книг.</p>
+    {% endif %}
+{% endblock %}

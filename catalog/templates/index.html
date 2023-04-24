@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Сайт для чтения книг</h1>
+
+  <p>Приветствую на <em>Сайте для чтения</em></p>
+
+<h2>Статистика</h2>
+
+  <p>На сайте представлены:</p>
+  <ul>
+    <li><strong>Книги:</strong> {{ num_books }}</li>
+    <li><strong>Авторы:</strong> {{ num_authors }}</li>
+    <li><strong>Жанры:</strong> {{ num_genres }}</li>
+  </ul>
+  <p>Вы посетили этот сайт {{ num_visits }}{% if num_visits == 1 %} time{% else %} раз{% endif %}.</p>
+{% endblock %}
